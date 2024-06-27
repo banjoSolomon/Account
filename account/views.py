@@ -6,6 +6,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Account, Transaction
 from .serializers import AccountSerializer, AccountCreateSerializer
@@ -13,9 +14,14 @@ from .serializers import AccountSerializer, AccountCreateSerializer
 
 # Create your views here.
 
-class ListAccount(ListCreateAPIView):
+
+class AccountViewSet(ModelViewSet):
     queryset = Account.objects.all()
     serializer_class = AccountCreateSerializer
+
+# class ListAccount(ListCreateAPIView):
+#     queryset = Account.objects.all()
+#     serializer_class = AccountCreateSerializer
 
     # def get_queryset(self):
     #     return Account.objects.all()
@@ -37,9 +43,9 @@ class ListAccount(ListCreateAPIView):
 #             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class AccountDetails(RetrieveUpdateDestroyAPIView):
-    queryset = Account.objects.all()
-    serializer_class = AccountCreateSerializer
+# class AccountDetails(RetrieveUpdateDestroyAPIView):
+#     queryset = Account.objects.all()
+#     serializer_class = AccountCreateSerializer
     # def get(self, request):
     #     accounts = Account.objects.all()
     #     serializer = AccountSerializer(accounts, many=True)
