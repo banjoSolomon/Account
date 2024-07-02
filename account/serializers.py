@@ -13,10 +13,10 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ['account_number', 'first_name', 'last_name', 'balance', 'account_type', 'transactions']
+        fields = ['account_number', 'balance', 'account_type', 'transactions']
 
 
 class AccountCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['first_name', 'last_name', 'pin', 'account_type']
+        fields = ['pin', 'account_type']

@@ -10,8 +10,6 @@ from user.models import User
 class Account(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     account_number = models.CharField(max_length=10, default=generate_account_number, unique=True, primary_key=True)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
     pin = models.CharField(max_length=4, validators=[validate_pin])
     balance = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     Account_TYPE = [
@@ -21,7 +19,7 @@ class Account(models.Model):
     ]
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} {self.balance} {self.account_type} {self.account_number}"
+        return f" {self.balance} {self.account_type} {self.account_number}"
 
     account_type = models.CharField(max_length=1, choices=Account_TYPE, default='S')
 

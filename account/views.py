@@ -34,13 +34,13 @@ class AccountViewSet(ModelViewSet):
 # def list_account(request):
 #     if request.method == 'GET':
 #         accounts = Account.objects.all()
-#         serializer = AccountSerializer(accounts, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
+#         serializer.py = AccountSerializer(accounts, many=True)
+#         return Response(serializer.py.data, status=status.HTTP_200_OK)
 #     elif request.method == 'POST':
-#         serializer = AccountCreateSerializer(data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         serializer.py = AccountCreateSerializer(data=request.data)
+#         if serializer.py.is_valid(raise_exception=True):
+#             serializer.py.save()
+#             return Response(serializer.py.data, status=status.HTTP_201_CREATED)
 
 
 # class AccountDetails(RetrieveUpdateDestroyAPIView):
@@ -48,26 +48,26 @@ class AccountViewSet(ModelViewSet):
 #     serializer_class = AccountCreateSerializer
     # def get(self, request):
     #     accounts = Account.objects.all()
-    #     serializer = AccountSerializer(accounts, many=True)
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
+    #     serializer.py = AccountSerializer(accounts, many=True)
+    #     return Response(serializer.py.data, status=status.HTTP_200_OK)
     #
     # def post(self, request):
-    #     serializer = AccountCreateSerializer(data=request.data)
-    #     if serializer.is_valid(raise_exception=True):
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     serializer.py = AccountCreateSerializer(data=request.data)
+    #     if serializer.py.is_valid(raise_exception=True):
+    #         serializer.py.save()
+    #         return Response(serializer.py.data, status=status.HTTP_201_CREATED)
 
     # def get(self, request, pk):
     #     account = get_object_or_404(Account, pk=pk)
-    #     serializer = AccountCreateSerializer(account, many=True)
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
+    #     serializer.py = AccountCreateSerializer(account, many=True)
+    #     return Response(serializer.py.data, status=status.HTTP_200_OK)
     #
     # def put(self, request, pk):
     #     account = get_object_or_404(Account, pk=pk)
-    #     serializer = AccountCreateSerializer(account, data=request.data)
-    #     if serializer.is_valid(raise_exception=True):
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_200_OK)
+    #     serializer.py = AccountCreateSerializer(account, data=request.data)
+    #     if serializer.py.is_valid(raise_exception=True):
+    #         serializer.py.save()
+    #         return Response(serializer.py.data, status=status.HTTP_200_OK)
     #
     # def delete(self, request, pk):
     #     account = get_object_or_404(Account, pk=pk)
@@ -79,13 +79,13 @@ class AccountViewSet(ModelViewSet):
 # def account_detail(request, pk):
 #     account = get_object_or_404(Account, pk=pk)
 #     if request.method == "GET":
-#         serializer = AccountSerializer(account)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
+#         serializer.py = AccountSerializer(account)
+#         return Response(serializer.py.data, status=status.HTTP_200_OK)
 #     elif request.method == "PUT":
-#         serializer = AccountSerializer(account, data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         serializer.py = AccountSerializer(account, data=request.data)
+#         if serializer.py.is_valid(raise_exception=True):
+#             serializer.py.save()
+#             return Response(serializer.py.data, status=status.HTTP_200_OK)
 #     elif request.method == "DELETE":
 #         account.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
