@@ -214,7 +214,7 @@ class TransferViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         return Response(data="Method not supported", status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-
+# auth/jwt/create
 class CheckBalance(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -225,10 +225,10 @@ class CheckBalance(APIView):
         message = f'''
         your new balance is
         {account.balance}
-        '''
+        thank you for banking with jaguda'''
         send_mail(subject="JAGUDA BANK", message= message,
                   from_email=['adewunmi@gmail.com'],
-                  recipient_list=['ayomidebanjo@gmail.com'])
+                  recipient_list=[f'{user.email}'])
         return Response(data=balance_details, status=status.HTTP_200_OK)
 
     # receiver_account_to = get_object_or_404(Account, pk=request.data)
