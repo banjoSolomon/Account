@@ -10,7 +10,7 @@ from user.models import User
 class Account(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     account_number = models.CharField(max_length=10, default=generate_account_number, unique=True, primary_key=True)
-    pin = models.CharField(max_length=4, validators=[validate_pin])
+    pin = models.CharField(max_length=4, validators=[validate_pin], default='0000')
     balance = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     Account_TYPE = [
         ('S', 'SAVING'),
@@ -22,6 +22,9 @@ class Account(models.Model):
         return f" {self.balance} {self.account_type} {self.account_number}"
 
     account_type = models.CharField(max_length=1, choices=Account_TYPE, default='S')
+
+    # def first_name(self):
+    #     return self.user.first_name
 
 
 class Transaction(models.Model):
