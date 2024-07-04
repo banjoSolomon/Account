@@ -10,7 +10,6 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-
 import account
 from .validator import validate_withdraw
 from rest_framework.permissions import IsAuthenticated
@@ -188,9 +187,14 @@ class TransferViewSet(ModelViewSet):
         receiver_account_to = get_object_or_404(Account, pk=receiver_account)
         balance = sender_account_from.balance
         transaction_details = {}
-        if balance > amount:
-            balance -= amount
-            Account.objects.filter(pk=sender_account_from).update(balance=balance)
+        if balance >= amount:
+            # balance -= amount
+            sender_account_from.balance -= amount
+            sender_account_from.save()
+            # balance += amount
+            # Account.objects.filter(account_number=receiver_account).update(balance=balance)
+            # Account.objects.filter(account_number=sender_account_from).update(balance=balance)
+            print("here again: ", balance)
         else:
             return Response({"message": "Insufficient Funds"}, status=status.HTTP_400_BAD_REQUEST)
         try:
@@ -214,6 +218,7 @@ class TransferViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         return Response(data="Method not supported", status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+
 # auth/jwt/create
 class CheckBalance(APIView):
     permission_classes = [IsAuthenticated]
@@ -226,8 +231,8 @@ class CheckBalance(APIView):
         your new balance is
         {account.balance}
         thank you for banking with jaguda'''
-        send_mail(subject="JAGUDA BANK", message= message,
-                  from_email=['adewunmi@gmail.com'],
+        send_mail(subject="JAGUDA BANK", message=message,
+                  from_email='info@jagudabank.com',
                   recipient_list=[f'{user.email}'])
         return Response(data=balance_details, status=status.HTTP_200_OK)
 

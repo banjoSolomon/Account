@@ -34,8 +34,8 @@ class WithdrawSerializer(serializers.Serializer):
 
 
 class TransferSerializer(serializers.Serializer):
-    sender = serializers.CharField(max_length=10)
-    receiver = serializers.CharField(max_length=10)
+    sender_account = serializers.CharField(max_length=10)
+    receiver_account = serializers.CharField(max_length=10)
     amount = serializers.DecimalField(max_digits=10, decimal_places=2)
     pin = serializers.CharField(max_length=4)
 
