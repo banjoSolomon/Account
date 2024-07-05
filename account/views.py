@@ -12,7 +12,7 @@ from rest_framework.viewsets import ModelViewSet
 
 import account
 from .validator import validate_withdraw
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import Account, Transaction
 from .serializers import AccountSerializer, AccountCreateSerializer, DepositWithdrawSerializer, WithdrawSerializer, \
     TransferSerializer
@@ -118,6 +118,8 @@ class AccountViewSet(ModelViewSet):
 
 
 class Deposit(APIView):
+    permission_classes = [IsAdminUser]
+
     def post(self, request):
         serializer = DepositWithdrawSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -204,8 +206,12 @@ class TransferViewSet(ModelViewSet):
             return Response({"message": "Transaction failed"}, status=status.HTTP_400_BAD_REQUEST)
         Transaction.objects.create(
             account=sender_account_from,
-            amount=amount,
+            amount='-' + str(amount),
             transaction_type='TRANSFER',
+        )
+        Transaction.objects.create(
+            account=receiver_account_to,
+            amount='+' + str(amount),
         )
         transaction_details['receiver account'] = receiver_account
         transaction_details['amount'] = amount
