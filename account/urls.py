@@ -5,6 +5,7 @@ from rest_framework.routers import SimpleRouter
 router = SimpleRouter()
 router.register('accounts', views.AccountViewSet)
 router.register('transfer', views.TransferViewSet, basename='transfer')
+router.register('transactions', views.TransactionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
